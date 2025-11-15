@@ -3,124 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krys Santiago Coiffeur</title>
+    <title>Krys Santiago Coiffeur - Comandas</title>
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: #fff8f8;
+            font-family: 'Poppins', sans-serif;
+            background: #f8f2f5;
             margin: 0;
             padding: 0;
-            color: #333;
+            text-align: center;
+            color: #3a2a2a;
         }
 
         header {
-            text-align: center;
-            padding: 40px 20px;
-            background: #ffe6ef;
-            border-bottom: 2px solid #f7c8d8;
+            padding: 30px;
+            background: #ffffff;
+            border-bottom: 2px solid #f1d7dd;
         }
 
-        header h1 {
+        h1 {
+            font-size: 26px;
             margin: 0;
-            font-size: 28px;
             letter-spacing: 2px;
         }
 
-        header h2 {
-            margin: 5px 0 0;
-            font-size: 18px;
-            font-weight: 300;
+        .logo-flor {
+            width: 80px;
+            margin-top: 10px;
         }
 
         .container {
-            max-width: 500px;
-            margin: 40px auto;
+            margin-top: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
             background: #ffffff;
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
 
         label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
         }
 
-        input, textarea {
+        input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #e6b8c6;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e2c1c9;
             border-radius: 8px;
-            background: #fff5f7;
+            font-size: 16px;
         }
 
         button {
             width: 100%;
             padding: 14px;
-            background: #ffb6c9;
             border: none;
-            border-radius: 8px;
+            background: #e8a4b3;
+            color: white;
             font-size: 16px;
-            font-weight: bold;
+            border-radius: 10px;
             cursor: pointer;
+            font-weight: 600;
         }
 
         button:hover {
-            background: #f79ab2;
+            background: #d98b9e;
         }
 
-        .comanda-box {
-            margin-top: 25px;
-            padding: 20px;
-            background: #fff1f4;
-            border: 1px solid #f7c8d8;
-            border-radius: 10px;
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #8a4d60;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>KRYS SANTIAGO COIFFEUR</h1>
-        <h2>Consulta de Comanda</h2>
-    </header>
+<header>
+    <h1>KRYS SANTIAGO COIFFEUR</h1>
+    <p>Consulta de Comandas</p>
+</header>
 
-    <div class="container">
-        <label for="nome">Nome da Cliente:</label>
-        <input type="text" id="nome" placeholder="Ex: Ana Paula">
+<div class="container">
+    <label for="nome">Digite o nome da cliente:</label>
+    <input type="text" id="nome" placeholder="Ex: Ana Souza">
 
-        <label for="valor">Valor Total:</label>
-        <input type="text" id="valor" placeholder="Ex: R$ 250,00">
+    <button onclick="buscarComanda()">Ver Comanda</button>
 
-        <label for="detalhes">Procedimentos Realizados:</label>
-        <textarea id="detalhes" rows="4" placeholder="Ex: Luzes, hidratação, tonalização"></textarea>
+    <p class="resultado" id="resultado"></p>
+</div>
 
-        <button onclick="gerarComanda()">Gerar Comanda</button>
+<script>
+    const comandas = {
+        "ana souza": "R$ 250 — Luzes + Hidratação",
+        "maria fernanda": "R$ 180 — Escova + Nutrição",
+        "clara mendes": "R$ 350 — Loiro Global",
+        "lais costa": "R$ 90 — Sobrancelha + Hidratação"
+    };
 
-        <div id="resultado"></div>
-    </div>
+    function buscarComanda() {
+        let nome = document.getElementById("nome").value.trim().toLowerCase();
+        let resultado = document.getElementById("resultado");
 
-    <script>
-        function gerarComanda() {
-            let nome = document.getElementById('nome').value;
-            let valor = document.getElementById('valor').value;
-            let detalhes = document.getElementById('detalhes').value;
-
-            let box = `
-                <div class='comanda-box'>
-                    <h3>Comanda de ${nome}</h3>
-                    <p><strong>Valor total:</strong> ${valor}</p>
-                    <p><strong>Procedimentos:</strong><br>${detalhes.replace(/\n/g,'<br>')}</p>
-                </div>
-            `;
-
-            document.getElementById('resultado').innerHTML = box;
+        if (comandas[nome]) {
+            resultado.innerHTML = "Total da comanda: " + comandas[nome];
+        } else {
+            resultado.innerHTML = "Cliente não encontrada. Verifique o nome.";
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>
